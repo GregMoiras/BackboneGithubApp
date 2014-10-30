@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -59,26 +59,32 @@
           //because upon success, an anonymous function is called we create prior to the ajax call -> var that = this
           success: function(res)
           {
-            function eachWord(str){
-              var replacing = str.replace(/-/g, " ");
+            
+            for (i=0; i < res.data.length; i++) {
+              var replacing = res.data[i].name.replace(/-/g, " ");
+
               var repoName = replacing.split(" ");
+
               var foobar = [];
-              for (i = 0; i < repoName.length; i++){
-                if ((repoName[i] == "on") || (repoName[i] == "as")) {
-                  foobar.push(repoName[i]);
+              for (j = 0; j < repoName.length; j++){
+                if ((repoName[j] == "on") || (repoName[j] == "as")) {
+
+                  foobar.push(repoName[j]);
                 }
                 else { 
                   foobar.push(
-                    repoName[i].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
+                    repoName[j].replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
                   );
                 }
               }
-              return foobar.join().replace(/,/g, " ");
+              res.data[i].name = foobar.join().replace(/,/g, " "); 
             }
            
             var sorted = _(res.data).sortBy("forks_count");
             that.$el.html(template({ data: sorted }));  
+
           }
+
         });
       }
     });
