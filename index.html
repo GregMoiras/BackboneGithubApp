@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <h1> 7geese </h1>
+    <h1> Assignment </h1>
     <hr />
     <div class = "wrapper"></div>
   </div>
@@ -27,10 +27,10 @@
     <tbody >
       <% data.forEach(function(repo) { %>
         <tr><% console.log(repo) %>
-          <td><%= repo.name  %></td>
-          <td><%= repo.language %></td>
-          <td><%= repo.forks_count %></td>
-          <td><%= repo.created_at %></td>
+          <td><%= repo.attributes.name  %></td>
+          <td><%= repo.attributes.language %></td>
+          <td><%= repo.attributes.forks_count %></td>
+          <td><%= repo.attributes.created_at %></td>
         </tr>
       <% });%>
     </tbody>
